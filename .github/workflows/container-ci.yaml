@@ -32,7 +32,7 @@ jobs:
     - name: Docker Image Listing
       run: docker images    
   cd:
-    name: 'Deploy CD'
+    name: 'Deploy CD 2'
     runs-on: ubuntu-latest
     environment: sandbox
     needs: ci
@@ -46,7 +46,7 @@ jobs:
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@v4    
-          
+
     - name: Docker build
       run: docker build -t luizjoli/myapp:latest .
 
