@@ -78,7 +78,8 @@ jobs:
   cd:
     name: 'Deploy CD'
     runs-on: ubuntu-latest
-    environment: production
+    environment: sandbox
+    needs: ci
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
