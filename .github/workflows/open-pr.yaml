@@ -57,3 +57,4 @@ jobs:
         body: 'This PR was created automatically by a GitHub Actions workflow.'
         commit-message: 'Create Open PR from Workflow'
         labels: 'automated-pr'
+        draft: false
