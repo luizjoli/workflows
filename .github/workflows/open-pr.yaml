@@ -50,8 +50,7 @@ jobs:
 
     - name: OpenPR
       uses: peter-evans/create-pull-request@v8
-      with:
-        branch: develop
+      with:        
         title: 'Open PR from Workflow'
         author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
         body: 'This PR was created automatically by a GitHub Actions workflow.'
