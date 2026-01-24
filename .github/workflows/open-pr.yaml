@@ -1,4 +1,4 @@
-name: 'Open PR Workflow'
+name: 'Open PR Workflow2'
 
 on:
   push:
