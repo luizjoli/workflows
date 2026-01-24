@@ -1,4 +1,4 @@
-name: 'Open PR Workflow2'
+name: 'Open PullRequest Workflow'
 
 on:
   push:
@@ -56,5 +56,4 @@ jobs:
         author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
         body: 'This PR was created automatically by a GitHub Actions workflow.'
         commit-message: 'Create Open PR from Workflow'
-        labels: 'automated-pr'
-        draft: false
+        labels: 'automated-pr'        
