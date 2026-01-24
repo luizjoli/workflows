@@ -1,0 +1,59 @@
+name: 'Open PR Workflow'
+
+on:
+  push:
+    branches: [ "feat/*" ]
+  pull_request:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  ci:
+    name: 'Build CI'
+    runs-on: ubuntu-latest
+    environment: sandbox
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v4    
+
+    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+    - name: Docker build
+      run: docker build -t luizjoli/myapp:latest .
+
+    # Checks that all Terraform configuration files adhere to a canonical format
+    - name: Docker Image Listing
+      run: docker images    
+  cd:
+    name: 'OPEN PR'
+    runs-on: ubuntu-latest
+    environment: sandbox
+    needs: ci
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v4    
+
+    - name: OpenPR
+      uses: peter-evans/create-pull-request@v8
+      with:
+        branch: develop
+        title: 'Open PR from Workflow'
+        author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
+        body: 'This PR was created automatically by a GitHub Actions workflow.'
+        commit-message: 'Create Open PR from Workflow'
+        labels: 'automated-pr'
