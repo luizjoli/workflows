@@ -1,4 +1,4 @@
-name: 'Build and Deploy Docker Container in Docker Hub Registry - Update 2'
+name: 'Build and Deploy Docker Container in Docker Hub Registry - Update 3'
 
 on:
   push:
