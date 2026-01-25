@@ -1,0 +1,25 @@
+name: Test changed-files
+on: 
+  pull_request:
+  # Optionally limit to specific types
+    types: [opened, reopened, synchronize]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # fetch-depth: 0 fetches all history, which is robust
+          fetch-depth: 0 
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v44 # Use the latest version
+        
+      - name: List all changed files
+        run: |
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            echo "$file was changed"
+          done
