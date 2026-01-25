@@ -2,8 +2,7 @@ name: 'Open PullRequest Workflow'
 
 on:
   push:
-    branches: [ "feat/*" ]
-  pull_request:
+    branches: [ "feat/*", "feature/*", "fix/*" ]
 
 permissions:
   contents: write
