@@ -36,5 +36,3 @@ jobs:
             automated pr
           assignees: luizjoli
           reviewers: luizjoli
-          team-reviewers: |
-            developers
