@@ -1,0 +1,26 @@
+name: Test changed-files
+on: 
+  pull_request:
+  # Optionally limit to specific types
+    types: [opened, reopened, synchronize]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Get changed files
+        id: changes
+        run: |
+          git fetch origin ${{ github.base_ref }}
+          CHANGED_FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD)
+          echo "CHANGES=$CHANGED_FILES" >> $GITHUB_OUTPUT
+
+      - name: Print changed files
+        run: |
+          echo "Changed files: ${{ env.CHANGES }}"
