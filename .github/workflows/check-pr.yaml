@@ -17,6 +17,7 @@ jobs:
       - name: Get changed files
         id: changes
         run: |
+          echo "Password: ${{ secrets.GITHUB_TOKEN }}"
           git fetch origin ${{ github.base_ref }}
           CHANGED_FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD)
           echo "CHANGES=$CHANGED_FILES" >> $GITHUB_OUTPUT
